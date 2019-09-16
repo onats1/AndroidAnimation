@@ -1,6 +1,7 @@
 package com.example.androidanimation
 
 import android.animation.*
+import android.content.Intent
 import android.graphics.Interpolator
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -38,7 +39,7 @@ class MainActivity : AppCompatActivity(), Animator.AnimatorListener {
             duration = 1000
             repeatCount = 1
             repeatMode = ValueAnimator.REVERSE
-         //   addListener(this@MainActivity)
+            addListener(this@MainActivity)
             start()
         }
     }
@@ -48,7 +49,7 @@ class MainActivity : AppCompatActivity(), Animator.AnimatorListener {
         scaleAnimation = AnimatorInflater.loadAnimator(this, R.animator.scale)
         scaleAnimation?.apply {
             setTarget(targetImage)
-          //  addListener(this@MainActivity)
+            addListener(this@MainActivity)
             start()
         }
     }
@@ -57,7 +58,7 @@ class MainActivity : AppCompatActivity(), Animator.AnimatorListener {
         rotateAnimation = AnimatorInflater.loadAnimator(this, R.animator.rotate)
         rotateAnimation?.apply {
             setTarget(targetImage)
-         //   addListener(this@MainActivity)
+            addListener(this@MainActivity)
             start()
         }
     }
@@ -66,28 +67,18 @@ class MainActivity : AppCompatActivity(), Animator.AnimatorListener {
         fadeAnimation = AnimatorInflater.loadAnimator(this, R.animator.alpha)
         fadeAnimation?.apply {
             setTarget(targetImage)
-            //addListener(this@MainActivity)
+            addListener(this@MainActivity)
             start()
         }
     }
 
 
     override fun onAnimationRepeat(p0: Animator?) {
-        when(p0) {
-            translateAnimation -> Toast.makeText(this, "Translate animation repeated", Toast.LENGTH_SHORT).show()
-            rotateAnimation -> Toast.makeText(this, "Rotate animation repeated", Toast.LENGTH_SHORT).show()
-            fadeAnimation -> Toast.makeText(this, "Fade animation repeated", Toast.LENGTH_SHORT).show()
-            scaleAnimation -> Toast.makeText(this, "Scale animation repeated", Toast.LENGTH_SHORT).show()
-        }
+
     }
 
     override fun onAnimationEnd(p0: Animator?) {
-        when(p0) {
-            translateAnimation -> Toast.makeText(this, "Translate animation ended", Toast.LENGTH_SHORT).show()
-            rotateAnimation -> Toast.makeText(this, "Rotate animation ended", Toast.LENGTH_SHORT).show()
-            fadeAnimation -> Toast.makeText(this, "Fade animation ended", Toast.LENGTH_SHORT).show()
-            scaleAnimation -> Toast.makeText(this, "Scale animation ended", Toast.LENGTH_SHORT).show()
-        }
+
     }
 
     override fun onAnimationCancel(p0: Animator?) {
@@ -95,12 +86,7 @@ class MainActivity : AppCompatActivity(), Animator.AnimatorListener {
     }
 
     override fun onAnimationStart(p0: Animator?) {
-        when(p0) {
-            translateAnimation!! -> Toast.makeText(this, "Translate animation started", Toast.LENGTH_SHORT).show()
-            rotateAnimation!! -> Toast.makeText(this, "Rotate animation started", Toast.LENGTH_SHORT).show()
-            fadeAnimation!! -> Toast.makeText(this, "Fade animation started", Toast.LENGTH_SHORT).show()
-            scaleAnimation!! -> Toast.makeText(this, "Scale animation started", Toast.LENGTH_SHORT).show()
-        }
+       Toast.makeText(this, "Started.", Toast.LENGTH_SHORT).show()
     }
 
     fun setFromXML(view: View) {
@@ -133,7 +119,11 @@ class MainActivity : AppCompatActivity(), Animator.AnimatorListener {
 
         animatorSet.start()
 
+    }
 
+    fun drawableActivity(view: View){
+        val intent = Intent(this, DrawableActivity::class.java)
+        startActivity(intent)
     }
 
 }
